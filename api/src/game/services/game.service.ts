@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { Frame } from './models/frame.model';
+import { Frame } from '../models/frame.model';
 
 @Injectable()
 export class GameService {

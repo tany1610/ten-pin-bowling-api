@@ -1,7 +1,7 @@
 import { Controller, Get, HttpCode, Post } from '@nestjs/common';
 
-import { GameService } from './game.service';
-import { Frame } from './models/frame.model';
+import { GameService } from '../services/game.service';
+import { Frame } from '../models/frame.model';
 
 @Controller('game')
 export class GameController {
