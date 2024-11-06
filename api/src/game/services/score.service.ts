@@ -27,7 +27,11 @@ export class ScoreService {
         let bonus = 0;
 
         if (frames[index + 1]) {
-            bonus += frames[index + 1].firstRoll + frames[index + 1].secondRoll;
+            if (frames[index + 1].isStrike) {
+                bonus += frames[index + 1].firstRoll + frames[index + 2].firstRoll;
+            } else {
+                bonus += frames[index + 1].firstRoll + frames[index + 1].secondRoll;
+            }
         }
 
         return bonus;

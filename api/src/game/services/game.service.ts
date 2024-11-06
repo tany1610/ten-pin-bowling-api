@@ -24,7 +24,7 @@ export class GameService {
         
         this.bonusService.checkForBonuses(this.frames, this.maxFrames, frame);
 
-        if (this.frames.length + 1 > this.maxFrames + this.bonusService.bonusFrames) {
+        if (this.frames.length + 1 > this.maxFrames + this.bonusService.bonusRolls) {
             this.restartGame();
         }
 
