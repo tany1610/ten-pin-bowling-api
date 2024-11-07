@@ -1,16 +1,18 @@
-import { Controller, Get, HttpCode, Post } from '@nestjs/common';
+import { Controller, Get, HttpCode, Post, UseFilters } from '@nestjs/common';
 
 import { GameService } from '../services/game.service';
 
-import { Frame } from '../models/frame.model';
+import { AllExceptionFilter } from 'src/common/filters/all-exception.filter';
+import { IFrame } from 'src/game/interfaces/frame.interface';
 
 @Controller('game')
+@UseFilters(new AllExceptionFilter())
 export class GameController {
     constructor(private readonly gameService: GameService) {}
 
     @Post('/bowl')
     @HttpCode(200)
-    bowl(): Frame[] {
+    bowl(): IFrame[] {
         return this.gameService.roll();
     }
 
@@ -22,7 +24,7 @@ export class GameController {
 
     @Get('/storage')
     @HttpCode(200)
-    gameStorage(): Frame[][] {
+    gameStorage(): IFrame[][] {
         return this.gameService.getGameStorage();
     }
 }

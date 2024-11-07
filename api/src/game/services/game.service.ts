@@ -1,30 +1,30 @@
 import { Injectable } from '@nestjs/common';
 
-import { Frame } from '../models/frame.model';
+import { RegularFrame } from '../models/regular-frame.model';
 
 import { ScoreService } from './score.service';
 import { StorageService } from './storage.service';
-import { BonusService } from './bonus.service';
+import { LastFrame } from '../models/last-frame.model';
+import { IFrame } from 'src/game/interfaces/frame.interface';
 
 @Injectable()
 export class GameService {
     private readonly maxFrames: number = 10;
-    private frames: Frame[] = [];
+    private frames: IFrame[] = [];
 
-    constructor(private readonly scoreService: ScoreService, private readonly storageService: StorageService, private readonly bonusService: BonusService) {}
+    constructor(private readonly scoreService: ScoreService, private readonly storageService: StorageService) {}
 
     private restartGame(): void {
         this.storageService.addGameToStorage([...this.frames]);
         this.frames = [];
-        this.bonusService.resetBonuses();
     }
 
-    public roll() : Frame[] {
-        const frame = new Frame();
-        
-        this.bonusService.checkForBonuses(this.frames, this.maxFrames, frame);
+    public roll() : IFrame[] {
+        const isLastFrame = this.frames.length + 1 === this.maxFrames;
 
-        if (this.frames.length + 1 > this.maxFrames + this.bonusService.bonusRolls) {
+        const frame = isLastFrame ? new LastFrame() : new RegularFrame();
+
+        if (this.frames.length + 1 > this.maxFrames) {
             this.restartGame();
         }
 
@@ -33,7 +33,7 @@ export class GameService {
         return this.frames;
     }
 
-    public getGameStorage(): Frame[][]  {
+    public getGameStorage(): IFrame[][]  {
         return this.storageService.gameStorage;
     }
 
