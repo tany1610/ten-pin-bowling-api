@@ -1,21 +1,19 @@
 import { RegularFrame } from "./regular-frame.model";
 
 export class LastFrame extends RegularFrame {
-    pins: number = 10;
-    readonly totalPins: number = 10;
     readonly _firstRoll: number;
     readonly _secondRoll: number;
-    readonly _thirdRoll: number;
+    readonly _thirdRoll: number | null = null;
 
     constructor(firstRoll?: number, secondRoll?: number, thirdRoll?: number) {
         super(firstRoll, secondRoll);
 
-        if(this.firstRoll === this.totalPins) {
+        if(this.isStrike) {
             this.resetPins();
             this._secondRoll = secondRoll !== undefined ? secondRoll : this.getRandomPins();
         }
 
-        if (this.secondRoll === this.totalPins) {
+        if (this.isSpare) {
             this.resetPins();
         }
 
