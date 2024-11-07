@@ -1,7 +1,6 @@
 import { RegularFrame } from "./regular-frame.model";
 
 export class LastFrame extends RegularFrame {
-    readonly _firstRoll: number;
     readonly _secondRoll: number;
     readonly _thirdRoll: number | null = null;
 
