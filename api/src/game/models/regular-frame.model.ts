@@ -1,7 +1,7 @@
 import { IFrame } from "src/game/interfaces/frame.interface";
 
 export class RegularFrame implements IFrame {
-    pins: number = 10;
+    private pins: number = 10;
     readonly totalPins: number = 10;
     readonly _firstRoll: number;
     readonly _secondRoll: number;
@@ -15,6 +15,10 @@ export class RegularFrame implements IFrame {
         const hitPins = Math.floor(Math.random() * (this.pins + 1));
         this.pins -= hitPins;
         return hitPins;
+    }
+
+    resetPins(): void {
+        this.pins = 10;
     }
 
     public get isStrike(): boolean { return  this._firstRoll === this.totalPins; };

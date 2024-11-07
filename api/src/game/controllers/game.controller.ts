@@ -2,8 +2,8 @@ import { Controller, Get, HttpCode, Post, UseFilters } from '@nestjs/common';
 
 import { GameService } from '../services/game.service';
 
-import { AllExceptionFilter } from 'src/common/filters/all-exception.filter';
-import { IFrame } from 'src/game/interfaces/frame.interface';
+import { AllExceptionFilter } from '../../common/filters/all-exception.filter';
+import { IFrame } from '../../game/interfaces/frame.interface';
 
 @Controller('game')
 @UseFilters(new AllExceptionFilter())

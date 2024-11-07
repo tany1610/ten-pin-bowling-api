@@ -21,9 +21,5 @@ export class LastFrame extends RegularFrame {
         }
     };
 
-    resetPins(): void {
-        this.pins = 10;
-    }
-
     public get thirdRoll(): number { return this._thirdRoll; };
 }

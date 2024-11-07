@@ -1,10 +1,6 @@
 export interface IFrame {
-    pins: number;
-    readonly totalPins: number;
-    readonly _firstRoll: number;
-    readonly _secondRoll: number;
-    
     getRandomPins(): number;
+    resetPins(): void;
 
     get isStrike(): boolean;
     get isSpare(): boolean;
