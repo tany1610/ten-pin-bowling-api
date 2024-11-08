@@ -22,7 +22,7 @@ describe("GameController", () => {
         it("should return array of IFrames", () => {
             const mockedResult = [new RegularFrame(5, 4)];
 
-            jest.spyOn(gameService, "roll").mockReturnValue(mockedResult);
+            jest.spyOn(gameService, "bowl").mockReturnValue(mockedResult);
 
             expect(gameController.bowl()).toEqual(mockedResult);
         });
