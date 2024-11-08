@@ -27,4 +27,24 @@ describe("GameController", () => {
             expect(gameController.bowl()).toEqual(mockedResult);
         });
     });
+
+    describe("score", () => {
+        it("should return a number", () => {
+            const mockedResult = 100;
+
+            jest.spyOn(gameService, "getCurrentGameScore").mockReturnValue(mockedResult);
+
+            expect(gameController.currentGameScore()).toEqual(mockedResult);
+        });
+    });
+
+    describe("storage", () => {
+        it("should return a matrix of IFrames", () => {
+            const mockedResult = [[new RegularFrame(5, 4)], [new RegularFrame(5, 4)]];
+
+            jest.spyOn(gameService, "getGameStorage").mockReturnValue(mockedResult);
+
+            expect(gameController.gameStorage()).toEqual(mockedResult);
+        });
+    });
 });
