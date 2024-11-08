@@ -1,19 +1,17 @@
-import { Controller, Get, HttpCode, Post, UseFilters } from '@nestjs/common';
+import { Controller, Get, HttpCode, Post } from '@nestjs/common';
 
 import { GameService } from '../services/game.service';
 
-import { AllExceptionFilter } from '../../common/filters/all-exception.filter';
 import { IFrame } from '../../game/interfaces/frame.interface';
 
 @Controller('game')
-@UseFilters(new AllExceptionFilter())
 export class GameController {
     constructor(private readonly gameService: GameService) {}
 
     @Post('/bowl')
     @HttpCode(200)
     bowl(): IFrame[] {
-        return this.gameService.roll();
+        return this.gameService.bowl();
     }
 
     @Get('/score')

@@ -19,7 +19,7 @@ export class GameService {
         this.frames = [];
     }
 
-    public roll() : IFrame[] {
+    public bowl() : IFrame[] {
         const isLastFrame = this.frames.length + 1 === this.maxFrames;
 
         const frame = isLastFrame ? new LastFrame() : new RegularFrame();

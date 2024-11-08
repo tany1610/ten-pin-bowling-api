@@ -29,15 +29,15 @@ describe("GameService", () => {
 
     describe('roll', () => {
         it('should add a RegularFrame if not the last frame', () => {
-            const frames = gameService.roll();
+            const frames = gameService.bowl();
             expect(frames[0]).toBeInstanceOf(RegularFrame);
         });
 
         it('should add a LastFrame on the final frame', () => {
             for (let i = 0; i < 9; i++) {
-                gameService.roll();
+                gameService.bowl();
             }
-            const frames = gameService.roll();
+            const frames = gameService.bowl();
             expect(frames[9]).toBeInstanceOf(LastFrame);
         });
 
@@ -48,7 +48,7 @@ describe("GameService", () => {
             storageService.addGameToStorage = addGameToStorageMock;
 
             for (let i = 0; i <= maxFrames; i++) {
-                gameService.roll();
+                gameService.bowl();
             }
 
             expect(addGameToStorageMock).toHaveBeenCalledWith(expect.any(Array));
@@ -65,7 +65,7 @@ describe("GameService", () => {
     describe('getCurrentGameScore', () => {
         it('should call ScoreService.getCurrentGameScore with frames and maxFrames', () => {
             const maxFrames = 10;
-            gameService.roll();
+            gameService.bowl();
             gameService.getCurrentGameScore();
 
             expect(scoreService.getCurrentGameScore).toHaveBeenCalledWith(expect.any(Array), maxFrames);
